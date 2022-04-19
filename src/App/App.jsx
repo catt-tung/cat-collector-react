@@ -54,11 +54,19 @@ function App() {
 
   const addToy = async (toyData) => {}
 
-  const updateCat = async (catData) => {}
+  const updateCat = async (catData) => {
+    const updatedCat = await catService.update(catData)
+    setCats(cats.map((cat) => (
+		cat.id === updatedCat.id ? updatedCat : cat
+	)))
+  }
 
   const updateToy = async (toyData) => {}
 
-  const deleteCat = async (id) => {}
+  const deleteCat = async (id) => {
+    await catService.deleteOne(id)
+    setCats(cats.filter(cat => cat.id !== parseInt(id)))
+  }
 
   const deleteToy = async (id) => {}
 
